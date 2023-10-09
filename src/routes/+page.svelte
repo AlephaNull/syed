@@ -1,59 +1,57 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import { onMount } from 'svelte';
+
+	const getRandomUser = async () => {
+		var response = await fetch('[http://worldtimeapi.org/api)');
+		var result = await response.json();
+		return result;
+	};
+
+	let userPromise = getRandomUser();
 </script>
 
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
-
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
-</section>
+<body>
+	<h1>Hi, I'm Syed</h1>
+	<h2>Developer | Student | Founder</h2>
+	<div class="content">
+		I'm a 15 year old builder who makes cool stuff if I can focus. I've worked for and founded a
+		couple of agencies and startups. I'm a freelance developer, designer, marketer and writer. <br
+		/>
+		I'm currently busy creating an AI consulting company called <i> firstgenesis </i> . <br />
+		I'm interested in the intersection of the arts and humanities with technology and science, particularly
+		buidling user-friendly but extremely effecient products and systems. I'm a philomath, philosopher
+		and liberal (the classical meaning, not the modern one). I'm religous but skeptical. Welcome to my
+		corner of the internet.
+	</div>
+	<!-- {#await PROMISE_VAR then RESULT_VAR} -->
+	<!-- 	<b>{RESULT_VAR}</b> -->
+	<!-- {/await} -->
+	<!---->
+	<!--  {#await userPromise then users} -->
+	<!--   <h2>{users.results[0].name.first}</h2> -->
+	<!--  {/await} -->
+</body>
 
 <style>
-	section {
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:wght@600&display=swap');
+	body {
+		background: #14191a;
+		color: white;
+		font-family: 'Montserrat', sans-serif;
+		font-family: 'Raleway', sans-serif;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		align-items: center;
-		flex: 0.6;
+	}
+	h2 {
+		font-size: 1em;
+		color: grey;
+		line-height: 1px;
+		margin-top: 1px;
+		margin-bottom: 2em;
 	}
 
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
+	.content {
+		line-height: 2em;
 	}
 </style>
