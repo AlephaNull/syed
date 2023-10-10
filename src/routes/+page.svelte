@@ -1,13 +1,66 @@
 <script>
-	import { onMount } from 'svelte';
+	const getCurrentTimeDate = () => {
+		let currentTimeDate = new Date();
 
-	const getRandomUser = async () => {
-		var response = await fetch('[http://worldtimeapi.org/api)');
-		var result = await response.json();
-		return result;
+		var weekday = new Array(7);
+		weekday[0] = 'SUN';
+		weekday[1] = 'MON';
+		weekday[2] = 'TUE';
+		weekday[3] = 'WED';
+		weekday[4] = 'THU';
+		weekday[5] = 'FRI';
+		weekday[6] = 'SAT';
+
+		var month = new Array();
+		month[0] = 'JAN';
+		month[1] = 'FEB';
+		month[2] = 'MAR';
+		month[3] = 'APR';
+		month[4] = 'May';
+		month[5] = 'JUN';
+		month[6] = 'JUL';
+		month[7] = 'AUG';
+		month[8] = 'SEP';
+		month[9] = 'OCT';
+		month[10] = 'NOV';
+		month[11] = 'DEC';
+
+		var hours = currentTimeDate.getHours();
+
+		var minutes = currentTimeDate.getMinutes();
+		// minutes = minutes < 10 ? '0' + minutes : minutes;
+
+		if (minutes < 10) {
+			minutes = '0' + minutes;
+		} else {
+			minutes = minutes;
+		}
+
+		var AMPM = hours >= 12 ? 'PM' : 'AM';
+
+		if (hours === 12) {
+			hours = 12;
+		} else {
+			hours = hours % 12;
+		}
+
+		var currentTime = `${hours}:${minutes}${AMPM}`;
+		var currentDay = weekday[currentTimeDate.getDay()];
+
+		var currentDate = currentTimeDate.getDate();
+		var currentMonth = month[currentTimeDate.getMonth()];
+		var CurrentYear = currentTimeDate.getFullYear();
+
+		var fullDate = `${currentDate} ${currentMonth} ${CurrentYear}`;
+
+		document.getElementById('time').innerHTML = currentTime;
+		document.getElementById('day').innerHTML = currentDay;
+		document.getElementById('date').innerHTML = fullDate;
+
+		setTimeout(getCurrentTimeDate, 500);
 	};
 
-	let userPromise = getRandomUser();
+	getCurrentTimeDate();
 </script>
 
 <body>
@@ -23,13 +76,12 @@
 		and liberal (the classical meaning, not the modern one). I'm religous but skeptical. Welcome to my
 		corner of the internet.
 	</div>
-	<!-- {#await PROMISE_VAR then RESULT_VAR} -->
-	<!-- 	<b>{RESULT_VAR}</b> -->
-	<!-- {/await} -->
-	<!---->
-	<!--  {#await userPromise then users} -->
-	<!--   <h2>{users.results[0].name.first}</h2> -->
-	<!--  {/await} -->
+
+	<div>
+		<p id="time">1:20PM</p>
+		<p id="day">SUN</p>
+		<p id="date">9 May 2021</p>
+	</div>
 </body>
 
 <style>
@@ -53,5 +105,25 @@
 
 	.content {
 		line-height: 2em;
+	}
+
+	p {
+		display: inline;
+		margin: 5px;
+	}
+
+	#time {
+		font-size: 60px;
+		color: #004aad;
+	}
+
+	#day {
+		font-size: 40px;
+		color: #ff5757;
+	}
+
+	#date {
+		font-size: 20px;
+		color: #ff5757;
 	}
 </style>
