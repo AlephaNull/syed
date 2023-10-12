@@ -1,0 +1,46 @@
+<script>
+	import { onMount } from 'svelte';
+
+	export let timezone;
+
+	let now = new Date();
+
+	const pad = (n) => (n < 10 ? `0${n}` : n);
+
+	const offsets = {
+		GMT: 0,
+		EDT: -300,
+		IST: +330,
+		HKT: +480
+		// ...
+	};
+
+	$: offset = offsets[timezone];
+
+	// probably a terrible way to handle
+	// timezone offsets, sue me
+	$: d = new Date(now.getTime() + now.getTimezoneOffset() * 60000 + offset * 60000);
+
+	onMount(() => {
+		const interval = setInterval(() => {
+			now = new Date();
+		}, 1000);
+		return () => clearInterval(interval);
+	});
+</script>
+
+<span>{pad(d.getHours())}</span> :
+<span>{pad(d.getMinutes())}</span> :
+<span class="seconds">{pad(d.getSeconds())}</span>
+
+<style>
+	span {
+		font-variant: tabular-nums;
+		color: grey;
+		margin: 0;
+	}
+
+	.seconds {
+		font-size: 0.8em;
+	}
+</style>
