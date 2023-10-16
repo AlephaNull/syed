@@ -29,18 +29,26 @@
 	});
 </script>
 
+<svelte:head>
+	<link rel="stylesheet" href="https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css" />
+</svelte:head>
+
+<i class="mi mi-clock"><span class="u-sr-only" /></i>
 <span>{pad(d.getHours())}</span> :
 <span>{pad(d.getMinutes())}</span> :
-<span class="seconds">{pad(d.getSeconds())}</span>
+<span class="seconds"
+	>{pad(d.getSeconds())} <i class="mi mi-location"><span class="u-sr-only" /></i>
+</span>
 
 <style>
 	span {
 		font-variant: tabular-nums;
 		color: grey;
-		margin: 0;
+		position: relative;
+		padding: 1px;
 	}
 
-	.seconds {
-		font-size: 0.8em;
+	.mi-clock {
+		color: grey;
 	}
 </style>
