@@ -1,6 +1,5 @@
 <script>
 	import Worldclock from './Worldclock.svelte';
-	import '@fortawesome/fontawesome-free/css/all.min.css';
 	// You will need to pass your parameters to the function
 	// You can initialize it with SCP() or SpotifyCurrentlyPlaying()
 </script>
@@ -21,6 +20,7 @@
 		</p>
 	</div>
 	<h2>Developer | Student | Founder</h2>
+	<hr />
 	<section class="hero">
 		<div class="content">
 			I'm a 15 year old builder who makes cool stuff if I can focus. I've worked for and founded a
@@ -28,29 +28,38 @@
 			AI consulting company called <i> firstgenesis </i> . I'm interested in the intersection of the
 			arts and humanities with technology and science. I'm a philomath, philosopher and liberal (the
 			classical meaning, not the modern one). I'm religous but skeptical. Welcome to my corner of
-			the internet.
-			<hr />
-			<div class="dev-icons">
-				<i class="fa-brands fa-html5" />
-				<i class="fa-brands fa-css3-alt" />
-				<i class="fa-brands fa-square-js" />
-				<i class="fa-brands fa-python" />
-				<i class="devicon-typescript-plain" />
-				<i class="devicon-sass-original" />
-				<i class="devicon-postgresql-plain-wordmark" />
-				<i class="devicon-bootstrap-plain-wordmark" />
+			the internet. <br />
+			<div class="icons">
+				<i class="devicon-html5-plain" />
+				<i class="devicon-css3-plain" />
 				<i class="devicon-tailwindcss-plain" />
-				<i class="devicon-svelte-plain" />
-				<i class="devicon-firebase-plain" />
-				<i class="devicon-git-plain" />
+				<i class="devicon-javascript-plain" />
+				<i class="devicon-nodejs-plain-wordmark" />
+				<i class="devicon-sass-original" />
+				<i class="devicon-svelte-plain-wordmark" />
+				<i class="devicon-bash-plain" />
+				<i class="devicon-bootstrap-plain" />
+				<i class="devicon-c-plain" />
+				<i class="devicon-linux-plain" />
+				<i class="devicon-python-plain" />
 				<i class="devicon-github-original" />
+				<i class="devicon-git-plain" />
+				<i class="devicon-postgresql-plain" />
 				<i class="devicon-sqlite-plain" />
 				<i class="devicon-figma-plain" />
-				<i class="devicon-linux-plain" />
-				<i class="devicon-pandas-original-wordmark" />
-				<i class="devicon-numpy-original-wordmark" />
-				<i class="devicon-vim-plain" />
 			</div>
+		</div>
+
+		<div class="socials">
+			I like internet clout. Follow me.
+			<ul>
+				<li>Instagram</li>
+				<li>Twitter/X</li>
+				<li>Github</li>
+				<li>LinkedIn</li>
+				<li>Email</li>
+				<li>Calendar</li>
+			</ul>
 		</div>
 	</section>
 </body>
@@ -66,7 +75,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		margin-left: 2em;
+		margin: 0;
 	}
 	h2 {
 		font-size: 1.3em;
@@ -85,17 +94,24 @@
 	.content {
 		line-height: 2em;
 		align-items: center;
-		margin-left: 0.5em;
-		margin-right: 2em;
 	}
 
-	.dev-icons > i {
+	.icons > i {
 		font-size: 2em;
+	}
+
+	.socials {
+		align-items: center;
 	}
 
 	.header {
 		display: flex;
 		flex-direction: column;
+	}
+
+	section {
+		height: 100vh;
+		display: flex;
 	}
 
 	@media screen and (min-width: 779px) {
@@ -114,6 +130,9 @@
 			margin-left: 5em;
 			margin-right: 5em;
 			font-size: 1.2em;
+		}
+		section {
+			height: 80vh;
 		}
 	}
 </style>
